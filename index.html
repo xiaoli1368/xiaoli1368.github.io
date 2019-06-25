@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang>
+<html class="theme-next pisces use-motion" lang>
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -93,7 +93,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Pisces',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -215,6 +215,137 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/25/信号处理第一篇/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xiaoli">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaoli's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/25/信号处理第一篇/" itemprop="url">信号处理第一篇</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-25T16:33:04+08:00">
+                2019-06-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><p><img src="/.com//fig3.svg" alt></p>
+<p><img src="/.com//001.jpg" alt></p>
+<h3 id="1-互相关的常见计算方法"><a href="#1-互相关的常见计算方法" class="headerlink" title="1. 互相关的常见计算方法"></a>1. 互相关的常见计算方法</h3><p>通过上一小节的介绍，可以发现<strong>TOA/TDOA-DOA算法的关键在于对不同通道之间的信号时延的估计</strong>。在实际应用中，通常使用信号之间的互相关（Cross-Correlation）来计算时延，互相关函数的定义如下：<br>$$<br>R\left( \tau  \right) = E\left[ x_1\left( m \right) \cdot x_2\left( {m + \tau } \right) \right]<br>$$<br>其中${ {x_1}\left( m \right)}$和${ {x_2}\left( m \right)}$是两个不同的连续信号，对于经过ADC采样后得到的${N}$点离散信号如${ {x_1}\left[ m \right]}$，若假设其对应的时间轴为${\left[ {0,N - 1} \right]}$，则上式可以转化为：</p>
+<p>利用MATLAB仿真如下所示：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% 频域计算GCC-PHAT</span></span><br><span class="line">Gss = fft(x1,Nfft).*<span class="built_in">conj</span>(fft(x2,Nfft));</span><br><span class="line">Gss = Gss./<span class="built_in">abs</span>(Gss);</span><br><span class="line"><span class="comment">% Gss = exp(1i*angle(Gss)); % 这种方式也可以</span></span><br><span class="line">xcorrGcc = fftshift(ifft(Gss));</span><br></pre></td></tr></table></figure>
+
+<p><strong>PHAT算法的出发点是，利用CC求解时延时，关心的在于两个通道中信号的相位关系</strong>，因此利用GCC求解出的互相关结果的幅度没有实际的意义，只需确定时延对应的位置即可。因此<strong>PHAT将互功率谱进行了幅度归一化</strong>，即在每个频点上幅度分量等价，而相位仍保持原来的信息，这样进行反傅里叶变换后，可以在时延处获得较大的峰值。</p>
+<p>从信号平坦性和频谱之间的联系分析：由于时域和频域具有对偶性，<strong>当进行PHAT加权后，互功率谱变得更加平坦，同时这也意味着频谱分量相对更加丰富，因此时域上只有出现较为陡峭的冲激才能够与这种“平坦”的信号频谱相对应</strong>。</p>
+<p>其实，<strong>信号进行了PHAT加权后，实质上相当于进行了白化滤波</strong>，倘若信号转换为了理想的白噪声形式，则时域中必然会在零延时处出现冲激，这是由傅里叶变换决定的。然而仅进行了幅度上的归一化尚且不能认为是理想的白化，被保留的相位信息仍占据主导因素，因此会在准确的时延处产生更大的冲激。<strong>因此两路具有确定延时关系的信号在进行GCC-PHAT后会获得两个冲激峰值</strong>。如果两路信号不具备延时关系，则它们的相关性很小，因此进行PHAT加权而产生的频谱更加趋向于理想白噪声，因此它们的时域结果也趋向于在零时延处产生较大峰值。</p>
+<blockquote>
+<p>这样会引入一个模糊问题，即考虑两路信号之间的延时很小或两路信号不存在相关性两种情况，GCC-PHAT在理论上会获得几乎一致的结果，即都仅仅会在零时延附近产生一个峰值，从而难以区分。这是一个值得思考的问题，需要结合实际的信号之间的互相关情况进行分析，这里暂且搁置争议，不再深入讨论。</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -522,7 +653,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -535,7 +666,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">tags</span>
                 
               </div>
@@ -590,7 +721,7 @@
 
 
 
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
 
 
 
@@ -689,6 +820,13 @@
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
 
   
 
