@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next pisces use-motion" lang>
+<html class="theme-next gemini use-motion" lang>
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -97,7 +97,7 @@
 <meta property="og:image" content="https://github.com/2019/06/25/2019-06-25-003-signal-delay/fig3.svg">
 <meta property="og:image" content="https://github.com/2019/06/25/2019-06-25-003-signal-delay/fig5.png">
 <meta property="og:image" content="https://github.com/2019/06/25/2019-06-25-003-signal-delay/fig4.svg">
-<meta property="og:updated_time" content="2019-06-28T10:01:41.521Z">
+<meta property="og:updated_time" content="2019-06-29T08:10:44.754Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="信号之间的时延估计">
 <meta name="twitter:description" content="说明 这篇文章是为了探讨对存在明显时延关系的不同路通道内信号的时延估计。  1. 互相关的常见计算方法通过上一小节的介绍，可以发现TOA/TDOA-DOA算法的关键在于对不同通道之间的信号时延的估计。在实际应用中，通常使用信号之间的互相关（Cross-Correlation）来计算时延，互相关函数的定义如下：$$R\left( \tau  \right) = E\left[ x_1\left( m">
@@ -109,7 +109,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Pisces',
+    scheme: 'Gemini',
     version: '5.1.4',
     sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -296,13 +296,19 @@
         
 
         <div class="post-meta">
+			 
+				<i class="fa fa-thumb-tack"></i> 
+				<font color="7D26CD">已置顶</font> 
+				<span class="post-meta-divider">|</span> 
+			
+
           <span class="post-time">
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Posted on&#58;</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-25T16:33:04+08:00">
                 2019-06-25
@@ -313,6 +319,8 @@
 
             
           </span>
+		  
+		  
 
           
             <span class="post-category">
@@ -322,8 +330,8 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">In</span>
+                               
+                <span class="post-meta-item-text">In&#58;</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -368,7 +376,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  2.2k
+                  2.2k字
                 </span>
               
 
@@ -384,7 +392,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  9
+                  9分钟
                 </span>
               
             </div>
@@ -442,10 +450,11 @@
 <p>通过查阅资料可得，常见的加权函数如下所示：</p>
 <center>
 <font size="1.5">
-    <img src="/2019/06/25/2019-06-25-003-signal-delay/fig5.png" width="80%"> <p></p>
+    <img src="/2019/06/25/2019-06-25-003-signal-delay/fig5.png" width="100%"> <p></p>
     Fig 3.5. 常见的加权函数 <p></p>
 </font>
 </center>
+
 
 <p>这里仅对PHAT加权下的GCC进行分析，此时的加权函数为：</p>
 <p>$$<br>A(w) = { {\rm{1} } \over {\left| { {G_{XY} }\left( w \right)} \right|} } = {1 \over {X\left( w \right) \cdot Y{ {\left( w \right)}^*} } }<br>$$</p>
@@ -474,6 +483,16 @@
     
     
     
+	<div>
+      
+        
+
+���ߣ�Moorez
+���ӣ�https://www.jianshu.com/p/f054333ac9e6
+��Դ������
+��������Ȩ���������У��κ���ʽ��ת�ض�����ϵ���߻����Ȩ��ע��������
+      
+	</div>
 
     
 
@@ -498,12 +517,23 @@
 
       </div>
     
+	<div>
+		
+		<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">
+              -------------���Ľ���<i class="fa fa-paw"></i>��л�����Ķ�-------------
+        </div>
+    
+</div>
+		
+	</div>
 
     <footer class="post-footer">
       
         <div class="post-tags">
           
-            <a href="/tags/信号处理，互相关，时延/" rel="tag"># 信号处理，互相关，时延</a>
+            <a href="/tags/信号处理，互相关，时延/" rel="tag"><i class="fa fa-tag"></i> 信号处理，互相关，时延</a>
           
         </div>
       
@@ -604,7 +634,9 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="xiaoli">
+              <a href="/">
+                <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="xiaoli">
+              </a>
             
               <p class="site-author-name" itemprop="name">xiaoli</p>
               <p class="site-description motion-element" itemprop="description">fighting!</p>
@@ -747,7 +779,7 @@
 
 
 
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
 
 
 
