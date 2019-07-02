@@ -617,9 +617,9 @@
       
         
           <h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><blockquote>
-<p>这篇文章是为了探讨对存在明显时延关系的不同路通道内信号的时延估计。</p>
+<p>这篇文章的目的是为了探讨对存在明显时延关系的不同路通道内信号的时延估计。之前在一个声源定位的课题中遇到了相关技术，其中<strong>TOA/TDOA-DOA算法的关键在于对不同通道之间的信号时延的估计</strong>，因此这里有必要总结一下。</p>
 </blockquote>
-<h3 id="1-互相关的常见计算方法"><a href="#1-互相关的常见计算方法" class="headerlink" title="1. 互相关的常见计算方法"></a>1. 互相关的常见计算方法</h3><p>通过上一小节的介绍，可以发现<strong>TOA/TDOA-DOA算法的关键在于对不同通道之间的信号时延的估计</strong>。在实际应用中，通常使用信号之间的互相关（Cross-Correlation）来计算时延，互相关函数的定义如下：<br>$$<br>R\left( \tau  \right) = E\left[ x_1\left( m \right) \cdot x_2\left( {m + \tau } \right) \right] \tag{1}<br>$$<br>其中 ${ {x_1}\left( m \right)}$ 和 ${ {x_2}\left( m \right)}$ 是两个不同的连续信号，对于经过ADC采样后得到的 ${N}$ 点离散信号如 ${ {x_1}\left[ m \right]}$，若假设其对应的时间轴为 ${\left[ {0,N - 1} \right]}$，则上式可以转化为：</p>
+<h3 id="1-互相关的常见计算方法"><a href="#1-互相关的常见计算方法" class="headerlink" title="1. 互相关的常见计算方法"></a>1. 互相关的常见计算方法</h3><p>在实际应用中，通常使用信号之间的<strong>互相关CC（Cross-Correlation）</strong>来计算时延，互相关函数的定义如下：<br>$$<br>R\left( \tau  \right) = E\left[ x_1\left( m \right) \cdot x_2\left( {m + \tau } \right) \right] \tag{1}<br>$$<br>其中 ${ {x_1}\left( m \right)}$ 和 ${ {x_2}\left( m \right)}$ 是两个不同的连续信号。而对于经过ADC采样后得到的 ${N}$ 点离散信号 ${ {x_1}\left[ m \right]}$，若假设其对应的时间轴为 ${\left[ {0,N - 1} \right]}$，则上式可以转化为：</p>
 <p>$$<br>\begin{align}<br>R\left[ n \right] &amp; = E\left[ { {x_1}\left[ m \right] \cdot {x_2}\left[ {m + n} \right]} \right] \\<br>&amp; = \sum\limits_{m =  - n}^{N - 1} { {x_1}\left[ m \right] \cdot {x_2}\left[ {m + n} \right]}<br>\end{align} \tag{2}<br>$$</p>
           <!--noindex-->
           <div class="post-button text-center">
