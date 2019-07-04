@@ -97,7 +97,7 @@
 <meta property="og:image" content="https://github.com/2019/06/25/2019-06-25-003-signal-delay/fig3.svg">
 <meta property="og:image" content="https://github.com/2019/06/25/2019-06-25-003-signal-delay/fig5.png">
 <meta property="og:image" content="https://github.com/2019/06/25/2019-06-25-003-signal-delay/fig4.svg">
-<meta property="og:updated_time" content="2019-07-02T12:35:27.138Z">
+<meta property="og:updated_time" content="2019-07-03T11:29:11.202Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="信号之间的时延估计">
 <meta name="twitter:description" content="说明 这篇文章的目的是为了探讨对存在明显时延关系的不同路通道内信号的时延估计。之前在一个声源定位的课题中遇到了相关技术，其中TOA/TDOA-DOA算法的关键在于对不同通道之间的信号时延的估计，因此这里有必要总结一下。  1. 互相关的常见计算方法在实际应用中，通常使用信号之间的互相关CC（Cross-Correlation）来计算时延，互相关函数的定义如下：$$R\left( \tau  \ri">
@@ -437,9 +437,10 @@
 <center>
 <font size="1.5"> 
     <img src="/2019/06/25/2019-06-25-003-signal-delay/fig3.svg" width="80%"> <p></p>
-    Fig 3. GCC-PHAT计算互相关对比与其它方法对比 <p></p>
+    Fig 1. 不同方法计算互相关 <p></p>
 </font>
 </center>
+
 
 <p>可以发现三者除了在幅度上存在比例关系外，输出结果的时延关系保持相同。<strong>特别注意，MATLAB中的xcorr()函数本身就是利用频域方法编写的</strong>，现从<strong>xcorr.m</strong>中将核心代码摘录如下，以供底层移植参考：</p>
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">c</span> = <span class="title">crosscorr</span><span class="params">(x,y,maxlag)</span></span></span><br><span class="line"><span class="comment">% Compute cross-correlation for vector inputs. Output is clipped based on</span></span><br><span class="line"><span class="comment">% maxlag but not padded if maxlag &gt;= max(size(x,1),size(y,1)).</span></span><br><span class="line">X = fft(x,m2,<span class="number">1</span>);</span><br><span class="line">Y = fft(y,m2,<span class="number">1</span>);</span><br><span class="line"><span class="keyword">if</span> <span class="built_in">isreal</span>(x) &amp;&amp; <span class="built_in">isreal</span>(y)</span><br><span class="line">    c1 = <span class="built_in">real</span>(ifft(X.*<span class="built_in">conj</span>(Y),[],<span class="number">1</span>));</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    c1 = ifft(X.*<span class="built_in">conj</span>(Y),[],<span class="number">1</span>);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">% Keep only the lags we want and move negative lags before positive</span></span><br><span class="line"><span class="comment">% lags.</span></span><br><span class="line">c = [c1(m2 - mxl + (<span class="number">1</span>:mxl)); c1(<span class="number">1</span>:mxl+<span class="number">1</span>)];</span><br></pre></td></tr></table></figure>
@@ -450,9 +451,10 @@
 <center>
 <font size="1.5">
     <img src="/2019/06/25/2019-06-25-003-signal-delay/fig5.png" width="100%"> <p></p>
-    Fig 3.5. 常见的加权函数 <p></p>
+    Fig 2. 常见的加权函数 <p></p>
 </font>
 </center>
+
 
 
 <p>这里仅对PHAT加权下的GCC进行分析，此时的加权函数为：</p>
@@ -465,9 +467,10 @@
 <center>
 <font size="1.5">
     <img src="/2019/06/25/2019-06-25-003-signal-delay/fig4.svg" width="80%"> <p></p>
-    Fig 4. GCC-PHAT计算互相关对比与其它方法对比 <p></p>
+    Fig 3. GCC-PHAT计算互相关对比与其它方法对比 <p></p>
 </font>
 </center>
+
 
 <p>可以发现GCC-PHAT结果中仅在期望的时延 <strong>2/points</strong> 处产生了一个非零值，其它时刻都保持为零，因此更能够凸显出时延的相对关系。以下是对GCC-PHAT算法的理解：</p>
 <p><strong>PHAT算法的出发点是，利用CC求解时延时，关心的地方在于两个通道中信号的相位关系</strong>，因此利用GCC求解出的互相关结果的幅度没有实际的意义，只需确定时延对应的位置即可。所以<strong>PHAT将互功率谱进行了幅度归一化</strong>，即在每个频点上幅度分量等价，而相位仍保持原来的信息，这样进行反傅里叶变换后，可以在时延处获得较大的峰值。</p>
