@@ -86,13 +86,13 @@
 
 
 
-<meta name="description" content="说明 这篇文章是之前《信号之间的时延估计》的续篇，中间隔了很长时间才写这一篇，是因为期间一直有其它事情要做，而且感觉对GCC的一些关键点还没有考虑清楚。后来评论区一位朋友在关心续篇的进度，我就不得不抓紧时间好好思考一下了哈哈。因此最终写了这一篇作为上一篇的修正以及补充。 PS：这篇文章内容较多。">
+<meta name="description" content="说明 这篇文章是之前《信号之间的时延估计》的续篇，中间隔了很长时间才写这一篇，是因为期间一直有其它事情要做，而且感觉对GCC的一些关键点还没有考虑清楚。后来评论区一位朋友在关心续篇的进度，我就不得不抓紧时间好好思考一下了哈哈。因此最终写了这一篇作为上一篇的修正以及补充。 PS：这篇文章内容较多，能把这么枯燥的内容看完也不容易。">
 <meta name="keywords" content="信号处理，互相关，时延">
 <meta property="og:type" content="article">
 <meta property="og:title" content="信号之间的时延估计（续）">
 <meta property="og:url" content="https://github.com/xiaoli1368/xiaoli1368.github.io/2019/07/15/2019-07-06-001-signal-delay2/index.html">
 <meta property="og:site_name" content="Xiaoli&#39;s Blog">
-<meta property="og:description" content="说明 这篇文章是之前《信号之间的时延估计》的续篇，中间隔了很长时间才写这一篇，是因为期间一直有其它事情要做，而且感觉对GCC的一些关键点还没有考虑清楚。后来评论区一位朋友在关心续篇的进度，我就不得不抓紧时间好好思考一下了哈哈。因此最终写了这一篇作为上一篇的修正以及补充。 PS：这篇文章内容较多。">
+<meta property="og:description" content="说明 这篇文章是之前《信号之间的时延估计》的续篇，中间隔了很长时间才写这一篇，是因为期间一直有其它事情要做，而且感觉对GCC的一些关键点还没有考虑清楚。后来评论区一位朋友在关心续篇的进度，我就不得不抓紧时间好好思考一下了哈哈。因此最终写了这一篇作为上一篇的修正以及补充。 PS：这篇文章内容较多，能把这么枯燥的内容看完也不容易。">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://github.com/2019/07/15/2019-07-06-001-signal-delay2/fig1.png">
 <meta property="og:image" content="https://github.com/2019/07/15/2019-07-06-001-signal-delay2/fig2.png">
@@ -101,10 +101,14 @@
 <meta property="og:image" content="https://github.com/2019/07/15/2019-07-06-001-signal-delay2/fig5.png">
 <meta property="og:image" content="https://github.com/2019/07/15/2019-07-06-001-signal-delay2/fig6.png">
 <meta property="og:image" content="https://github.com/2019/07/15/2019-07-06-001-signal-delay2/fig7.png">
-<meta property="og:updated_time" content="2019-07-17T06:18:47.252Z">
+<meta property="og:image" content="https://github.com/2019/07/15/2019-07-06-001-signal-delay2/fig8.png">
+<meta property="og:image" content="https://github.com/2019/07/15/2019-07-06-001-signal-delay2/fig9.png">
+<meta property="og:image" content="https://github.com/2019/07/15/2019-07-06-001-signal-delay2/fig10.png">
+<meta property="og:image" content="https://github.com/2019/07/15/2019-07-06-001-signal-delay2/fig11.png">
+<meta property="og:updated_time" content="2019-07-17T09:02:24.806Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="信号之间的时延估计（续）">
-<meta name="twitter:description" content="说明 这篇文章是之前《信号之间的时延估计》的续篇，中间隔了很长时间才写这一篇，是因为期间一直有其它事情要做，而且感觉对GCC的一些关键点还没有考虑清楚。后来评论区一位朋友在关心续篇的进度，我就不得不抓紧时间好好思考一下了哈哈。因此最终写了这一篇作为上一篇的修正以及补充。 PS：这篇文章内容较多。">
+<meta name="twitter:description" content="说明 这篇文章是之前《信号之间的时延估计》的续篇，中间隔了很长时间才写这一篇，是因为期间一直有其它事情要做，而且感觉对GCC的一些关键点还没有考虑清楚。后来评论区一位朋友在关心续篇的进度，我就不得不抓紧时间好好思考一下了哈哈。因此最终写了这一篇作为上一篇的修正以及补充。 PS：这篇文章内容较多，能把这么枯燥的内容看完也不容易。">
 <meta name="twitter:image" content="https://github.com/2019/07/15/2019-07-06-001-signal-delay2/fig1.png">
 
 
@@ -380,7 +384,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  4.1k字
+                  6.7k字
                 </span>
               
 
@@ -396,7 +400,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  15分钟
+                  26分钟
                 </span>
               
             </div>
@@ -419,7 +423,7 @@
       
         <h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><blockquote>
 <p>这篇文章是之前《信号之间的时延估计》的续篇，中间隔了很长时间才写这一篇，是因为期间一直有其它事情要做，而且感觉对GCC的一些关键点还没有考虑清楚。后来评论区一位朋友在关心续篇的进度，我就不得不抓紧时间好好思考一下了哈哈。因此最终写了这一篇作为上一篇的修正以及补充。</p>
-<p>PS：这篇文章内容较多。</p>
+<p>PS：这篇文章内容较多，能把这么枯燥的内容看完也不容易。</p>
 </blockquote>
 <a id="more"></a>
 
@@ -484,7 +488,7 @@
 <li><strong>前者完全保留了频域幅度的信息，导致结果出现了一定的发散，但是抗噪性能优良。</strong></li>
 </ul>
 <p>从原理上分析，其它类型的GCC都是在此基础上<strong>选取了各式各样的加权系数</strong>，目的都是<strong>通过尝试来舍弃或保留一定的时频信息，来实现特定的目的和结果</strong>。</p>
-<h3 id="3-仿真结果"><a href="#3-仿真结果" class="headerlink" title="3. 仿真结果"></a>3. 仿真结果</h3><p>以下是利用实测信号求解时延的仿真结果，其中各个参数如下：</p>
+<h3 id="3-仿真结果"><a href="#3-仿真结果" class="headerlink" title="3. 仿真结果"></a>3. 仿真结果</h3><p>以下是利用实测信号求解时延的仿真结果，其中各个参数以及信号建模的流程如下：</p>
 <ul>
 <li><p><strong>原始信号由手机录音采集</strong>，采样率为 ${fs = 48000 Hz}$。</p>
 </li>
@@ -495,66 +499,136 @@
 <li><p>对 ${x_2\_ideal}$ 进行人工加噪作为实际的 ${x_2}$ 信号，即 ${x_2\_pract}$。</p>
 </li>
 </ul>
-<p>以下<strong>分别使用CC频域法以及GCC-PHAT的方法进行求解时延</strong>，代码和结果如下所示：</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%% 初始化</span></span><br><span class="line">clear;</span><br><span class="line">clc;</span><br><span class="line">close all;</span><br><span class="line"></span><br><span class="line"><span class="comment">% 读取原始数据</span></span><br><span class="line">load(<span class="string">'data.mat'</span>, <span class="string">'testData'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">% 设置参数</span></span><br><span class="line">fs    = <span class="number">48000</span>;</span><br><span class="line">delay = <span class="number">5.123e-4</span>;</span><br><span class="line">snr   = <span class="number">40</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">% 三路信号</span></span><br><span class="line">x1       = testData(<span class="number">4e4</span>:<span class="number">4.0999e4</span>);  <span class="comment">% 这里是为了刚好取到1000点</span></span><br><span class="line">x2_ideal = delayseq(x1, delay, fs);</span><br><span class="line">x2_pract = awgn(x2_ideal, snr);</span><br><span class="line"></span><br><span class="line"><span class="comment">% 计算滤波器前的互相关</span></span><br><span class="line">xcorr11_gcc       = my_gcc_phat(x1, x1);</span><br><span class="line">xcorr12_ideal_gcc = my_gcc_phat(x2_ideal, x1); <span class="comment">% 这里看的是x2_ideal相对x1的时延</span></span><br><span class="line">xcorr12_pract_gcc = my_gcc_phat(x2_pract, x1);</span><br><span class="line">xcorr11_cc        = xcorr(x1, x1);</span><br><span class="line">xcorr12_ideal_cc  = xcorr(x2_ideal, x1);       <span class="comment">% 这里看的是x2_ideal相对x1的时延</span></span><br><span class="line">xcorr12_pract_cc  = xcorr(x2_pract, x1);</span><br><span class="line"></span><br><span class="line"><span class="comment">% 作图</span></span><br><span class="line"><span class="built_in">figure</span>(<span class="number">1</span>);</span><br><span class="line">subplot(<span class="number">311</span>);<span class="built_in">plot</span>(x1);      title(<span class="string">'参考信号x1'</span>);          axis tight;grid on;</span><br><span class="line">subplot(<span class="number">312</span>);<span class="built_in">plot</span>(x2_ideal);title(<span class="string">'理想时延信号x2\_ideal'</span>);axis tight;grid on;</span><br><span class="line">subplot(<span class="number">313</span>);<span class="built_in">plot</span>(x2_pract);title(<span class="string">'含噪时延信号x2\_pract'</span>);axis tight;grid on;</span><br><span class="line"></span><br><span class="line"><span class="built_in">figure</span>(<span class="number">2</span>);</span><br><span class="line">subplot(<span class="number">321</span>);<span class="built_in">plot</span>(xcorr11_cc);       title(<span class="string">'参考信号x1'</span>);          axis tight;grid on;</span><br><span class="line">subplot(<span class="number">323</span>);<span class="built_in">plot</span>(xcorr12_ideal_cc); title(<span class="string">'理想时延信号x2\_ideal'</span>);axis tight;grid on;</span><br><span class="line">subplot(<span class="number">325</span>);<span class="built_in">plot</span>(xcorr12_pract_cc); title(<span class="string">'含噪时延信号x2\_pract'</span>);axis tight;grid on;</span><br><span class="line">subplot(<span class="number">322</span>);<span class="built_in">plot</span>(xcorr11_gcc);      title(<span class="string">'xcorr11\_gcc'</span>);       axis tight;grid on;</span><br><span class="line">subplot(<span class="number">324</span>);<span class="built_in">plot</span>(xcorr12_ideal_gcc);title(<span class="string">'xcorr12\_ideal\_gcc'</span>);axis tight;grid on;</span><br><span class="line">subplot(<span class="number">326</span>);<span class="built_in">plot</span>(xcorr12_pract_gcc);title(<span class="string">'xcorr12\_pract\_gcc'</span>);axis tight;grid on;</span><br></pre></td></tr></table></figure>
+<p>以下<strong>分别使用CC频域法以及GCC-PHAT的方法进行求解时延</strong>，代码如下所示：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%% 初始化</span></span><br><span class="line">clear;</span><br><span class="line">clc;</span><br><span class="line">close all;</span><br><span class="line"></span><br><span class="line"><span class="comment">% 读取原始数据</span></span><br><span class="line">load(<span class="string">'data.mat'</span>, <span class="string">'testData'</span>);                 <span class="comment">% 也可以采用其他的数据</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% 设置参数</span></span><br><span class="line">fs    = <span class="number">48000</span>;</span><br><span class="line">delay = <span class="number">5.123e-4</span>;</span><br><span class="line">snr   = <span class="number">40</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">% 三路信号</span></span><br><span class="line">x1       = testData(<span class="number">4e4</span>:<span class="number">4.0999e4</span>);   		   <span class="comment">% 这里是为了刚好取到1000点</span></span><br><span class="line">x2_ideal = delayseq(x1, delay, fs);</span><br><span class="line">x2_pract = awgn(x2_ideal, snr);</span><br><span class="line"></span><br><span class="line"><span class="comment">% 计算滤波器前的互相关</span></span><br><span class="line">xcorr11_gcc       = my_gcc_phat(x1, x1);</span><br><span class="line">xcorr12_ideal_gcc = my_gcc_phat(x2_ideal, x1); <span class="comment">% 这里看的是x2_ideal相对x1的时延</span></span><br><span class="line">xcorr12_pract_gcc = my_gcc_phat(x2_pract, x1);</span><br><span class="line">xcorr11_cc        = xcorr(x1, x1);</span><br><span class="line">xcorr12_ideal_cc  = xcorr(x2_ideal, x1);       <span class="comment">% 这里看的是x2_ideal相对x1的时延</span></span><br><span class="line">xcorr12_pract_cc  = xcorr(x2_pract, x1);</span><br><span class="line"></span><br><span class="line"><span class="comment">% 作图</span></span><br><span class="line"><span class="built_in">figure</span>(<span class="number">1</span>);</span><br><span class="line">subplot(<span class="number">311</span>);<span class="built_in">plot</span>(x1);      title(<span class="string">'参考信号x1'</span>);          axis tight;grid on;</span><br><span class="line">subplot(<span class="number">312</span>);<span class="built_in">plot</span>(x2_ideal);title(<span class="string">'理想时延信号x2\_ideal'</span>);axis tight;grid on;</span><br><span class="line">subplot(<span class="number">313</span>);<span class="built_in">plot</span>(x2_pract);title(<span class="string">'含噪时延信号x2\_pract'</span>);axis tight;grid on;</span><br><span class="line"></span><br><span class="line"><span class="built_in">figure</span>(<span class="number">2</span>);</span><br><span class="line">subplot(<span class="number">321</span>);<span class="built_in">plot</span>(xcorr11_cc);       title(<span class="string">'参考信号x1'</span>);          axis tight;grid on;</span><br><span class="line">subplot(<span class="number">323</span>);<span class="built_in">plot</span>(xcorr12_ideal_cc); title(<span class="string">'理想时延信号x2\_ideal'</span>);axis tight;grid on;</span><br><span class="line">subplot(<span class="number">325</span>);<span class="built_in">plot</span>(xcorr12_pract_cc); title(<span class="string">'含噪时延信号x2\_pract'</span>);axis tight;grid on;</span><br><span class="line">subplot(<span class="number">322</span>);<span class="built_in">plot</span>(xcorr11_gcc);      title(<span class="string">'xcorr11\_gcc'</span>);       axis tight;grid on;</span><br><span class="line">subplot(<span class="number">324</span>);<span class="built_in">plot</span>(xcorr12_ideal_gcc);title(<span class="string">'xcorr12\_ideal\_gcc'</span>);axis tight;grid on;</span><br><span class="line">subplot(<span class="number">326</span>);<span class="built_in">plot</span>(xcorr12_pract_gcc);title(<span class="string">'xcorr12\_pract\_gcc'</span>);axis tight;grid on;</span><br></pre></td></tr></table></figure>
 
-<p>结果如下所示;</p>
+<p>结果如下所示：</p>
 <center>
 <font size="1.5"> 
     <img src="/2019/07/15/2019-07-06-001-signal-delay2/fig3.png" width="80%"> <p></p>
-    Fig 3 <p></p>
+    Fig 3. 信号建模 <p></p>
 </font>
 </center>
 
 <center>
 <font size="1.5"> 
     <img src="/2019/07/15/2019-07-06-001-signal-delay2/fig4.png" width="80%"> <p></p>
-    Fig 4 <p></p>
+    Fig 4. 使用不同方法进行时延估计 <p></p>
 </font>
 </center>
 
-<p>可以发现当信噪比设置为40dB的时候，GCC-PHAT的结果可以很好的反映出结果，以下是20dB以及放大图</p>
+<blockquote>
+<p><strong>说明：</strong></p>
+<p>标题中的结尾后缀表示了使用的方法，cc（频域法）、gcc（GCC-PHAT）。中间的数字以及第二个下化线表示了进行互相关的两路信号，如 xcorr12_pract_gcc 表示使用 GCC-PHAT 的方法对信号 x1 与 x2_pract 进行时延估计；而 xcorr11_cc 表示使用频域法对信号 x1 和 x1 进行时延估计，也就是 x1 的自相关。</p>
+</blockquote>
+<p>可以发现理想情况下（SNR为40dB），GCC-PHAT的效果十分优异。以下<strong>将信噪比设置为20dB</strong>，并观察结果的放大图：</p>
 <center>
 <font size="1.5"> 
     <img src="/2019/07/15/2019-07-06-001-signal-delay2/fig5.png" width="80%"> <p></p>
-    Fig 5 <p></p>
+    Fig 5. 低信噪比下的时延估计 <p></p>
 </font>
 </center>
 
-<p>随着噪声的变化性能逐渐下降，</p>
-<h3 id="4-时延精度与采样率"><a href="#4-时延精度与采样率" class="headerlink" title="4. 时延精度与采样率"></a>4. 时延精度与采样率</h3><p>注意到时延设置的参数为 5.123e-4s（随便设置的），对应的时延点数为：24.5904，但是实际中不可能出现小数个点数，因此必然存在采样。如何获取准确的时延点数？</p>
-<p>以下是理想的不含有噪声的情况。</p>
+<p>可以发现传统的（频域）CC可以取得不错的效果，即便是在低信噪比的恶劣条件下，依然可以表现出一定的时延估计能力，但是缺点在于结果较为“发散”。而GCC在高信噪比下获得了十分尖锐的结果，但是噪声功率一旦过大，则结果迅速恶化。<strong>即随着噪声功率的增加，GCC-PHAT的性能逐渐下降，这些与理论分析都是一致的</strong>。</p>
+<h3 id="4-时延精度与采样率"><a href="#4-时延精度与采样率" class="headerlink" title="4. 时延精度与采样率"></a>4. 时延精度与采样率</h3><p><strong>上面的仿真只是从更加贴近实际应用的角度出发</strong>，验证了对于GCC-PHAT的理论分析。但是在实际的估计时延的场景中，需要面对的一个问题就是时域结果的精度。</p>
+<p>注意到在仿真中，时延参数为 ：${delay = 5.123e-4s}$（一看就知道是随便设置的），因此对应的时延点数为：${points = fs * delay = 24.5904}$ 。但是实际中的点数不可能出现小数形式，<strong>因此这里必然存在由采样而引入的估计误差。那么如何获取准确的时延点数或者提高时延估计的精度呢？</strong></p>
+<p>这里以理想的不含有噪声的情况为例：</p>
 <center>
 <font size="1.5"> 
     <img src="/2019/07/15/2019-07-06-001-signal-delay2/fig6.png" width="80%"> <p></p>
-    Fig 6 <p></p>
+    Fig 6. 理想无噪情况下的结果 <p></p>
 </font>
 </center>
 
-<p>一开始从采样的角度出现，以为这个精度完全是由采样率所制约了。</p>
-<p>后来是没有理解采样以及时域和频域的关系，即采样并不能认为是时延丢失了信息，而是转换为了频域的形式，可以从频域恢复出来信息，也就是说可以无损的恢复0-24000Hz内的成分。</p>
-<p>因此利用sinc插值即可。</p>
+<p>可以很直观的看到，利用GCC-PHAT得到的结果为：${points = 25}$，与准确的 24 点时延存在一定的误差。<strong>可以发现这个误差完全是由于采样率 ${fs = 4800Hz}$ 所制约</strong>，也就是说要想提高最终的估计结果的精度，只有提高麦克风对于原始信号 ${x_1}$ 以及 ${x_2}$ 的采样率？</p>
+<p>一开始我陷入了这里的误区，但是后来考虑到对于人类语音而言，采样率 ${fs = 48000Hz}$ 完全是绰绰有余的，那么问题出现在哪呢？原始是我没有理解采样以及时域和频域的关系。我之前总是使用一种固有的眼光去看的采样，总觉得时域采样，使得可以表现出来的信号点数减少了，因此导致了精度的下降。<strong>事实上，并不能认为是采样导致了信息丢失，而是信心通过采样转换为了频域的形式。也就是说，根据奈奎斯特采样定理，使用 ${fs = 480Hz00}$ 可以无损的恢复出 ${[0, 24000Hz]}$ 内的成分。</strong></p>
+<p>因此考虑到<strong>时域采样</strong>以及<strong>频域周期延拓</strong>的对应关系，那么恢复出原始波形的步骤是<strong>频域加窗</strong>，也就是等价于<strong>时域卷积 ${sinc}$ 函数</strong>，因此可以使用时域 ${sinc}$ 插值在一定程度上恢复出原来的信号。</p>
 <p>插值后的结果如下：</p>
 <center>
 <font size="1.5"> 
     <img src="/2019/07/15/2019-07-06-001-signal-delay2/fig7.png" width="80%"> <p></p>
-    Fig 7 <p></p>
+    Fig 7. sinc插值后结果 <p></p>
 </font>
 </center>
 
-<p>相邻两点之间插值了20点，最终的结果约为24.75，可以看到与24.59十分接近。</p>
-<p>但是仍然存在误差，分析可能是：</p>
+<p>其中相邻两点之间新插值点数为20，最终的结果约为24.75，可以看到与24.59十分接近。但是仍然存在一定误差，分析如下：</p>
 <ul>
-<li>选择的插值数据不是无限长的</li>
-<li>由于FFT的原因，导致原始的无限长的数据发生了搬移，因此必然发生了混叠，导致结果不准确</li>
-<li>但是这个精度对于很多情况下已经足够 了</li>
+<li><strong>选择的插值原始数据不是无限长的</strong>。</li>
+<li>由于<strong>FFT的原因，导致原始的无限长的数据发生了搬移和叠加</strong>，因此<strong>必然发生了混叠</strong>，导致结果不准确。</li>
+<li>但是这个精度对于很多场景已经足够 了。</li>
 </ul>
-<p>插值函数如下所示，是自己写的：</p>
+<p>其中<strong>使用到的插值函数如下所示</strong>，由我本人所写的（可能存在bug）：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">function [y, m] = my_sinc_vector(x, n, num)</span><br><span class="line">% Note:</span><br><span class="line">%       This function <span class="keyword">is</span> used to realize <span class="string">'Sinc interpolation'</span>.</span><br><span class="line">% Usage:</span><br><span class="line">%       [y, n] = my_sinc_vector(x, n, number)</span><br><span class="line">% Input arguments:</span><br><span class="line">%       x   : the original signal (<span class="number">1</span>*N)</span><br><span class="line">%       n   : the original time axis (<span class="number">1</span>*N)</span><br><span class="line">%       num : the number of interpolation points between two original points.</span><br><span class="line">% Output arguments:</span><br><span class="line">%       y   : the output signal (about <span class="number">1</span>*N*number)</span><br><span class="line">%       m   : the output time axis (about <span class="number">1</span>*N*number)</span><br><span class="line">% For example:</span><br><span class="line">%       x   = sin(<span class="number">1</span>:<span class="number">10</span>);</span><br><span class="line">%       n   = <span class="number">1</span>:<span class="number">10</span>;</span><br><span class="line">%       num = <span class="number">5</span>;</span><br><span class="line">%       [y, m] = my_sinc_vector(x, n, num);</span><br><span class="line">%       plot(n,x,<span class="string">'-o'</span>,<span class="string">'linewidth'</span>,<span class="number">2</span>);</span><br><span class="line">%       hold on;</span><br><span class="line">%       stem(m,y);</span><br><span class="line">% 说明：</span><br><span class="line">%       本函数用来实现sinc插值</span><br><span class="line">%       输入：原始信号，原始信号对应时间轴（点数），原始两点之间新插入的点数</span><br><span class="line">%       输出：插值后信号，插值后时间轴</span><br><span class="line">%       注意：这个函数返回的是一组向量（包括信号向量、时间向量）</span><br><span class="line"></span><br><span class="line">% --------------------------------------------------------------</span><br><span class="line">% 初始化</span><br><span class="line">N = length(n)+num*(length(n)<span class="number">-1</span>); % 总点数</span><br><span class="line">y = zeros(<span class="number">1</span>,N);                  % 输出信号矢量</span><br><span class="line">m = zeros(<span class="number">1</span>,N);                  % 输出时间矢量</span><br><span class="line"></span><br><span class="line">% --------------------------------------------------------------</span><br><span class="line">% 进行插值</span><br><span class="line"><span class="keyword">for</span> ii = <span class="number">1</span>:N</span><br><span class="line">    <span class="keyword">if</span>(mod(ii,num+<span class="number">1</span>)==<span class="number">1</span>)                  % 如果刚好取到</span><br><span class="line">        y(ii) = x(ceil(ii/(num+<span class="number">1</span>)));</span><br><span class="line">        m(ii) = n(ceil(ii/(num+<span class="number">1</span>)));</span><br><span class="line">    <span class="keyword">else</span>                                  % 如果没有取到</span><br><span class="line">        y_cac = <span class="number">0</span>;                        % 累加变量</span><br><span class="line">        m_before = n(ceil(ii/(num+<span class="number">1</span>)));   % 当前插值点之前的原始时间位置</span><br><span class="line">        m_back = n(ceil(ii/(num+<span class="number">1</span>))+<span class="number">1</span>);   % 当前插值点之后的原始时间位置</span><br><span class="line">        dt = (m_back-m_before)/(num+<span class="number">1</span>);   % 该插值区间的分辨率</span><br><span class="line">        m_cac = m_before+dt*(ii-(num+<span class="number">1</span>)*(ceil(ii/(num+<span class="number">1</span>)<span class="number">-1</span>))<span class="number">-1</span>); % 新插值点对应的时间位置</span><br><span class="line">        <span class="keyword">for</span> jj = <span class="number">1</span>:length(n)</span><br><span class="line">            y_cac = y_cac + x(jj)*sin((m_cac-n(jj))*pi)/((m_cac-n(jj))*pi); % 进行sinc插值累加</span><br><span class="line">        end</span><br><span class="line">        y(ii) = y_cac; % 信号赋值</span><br><span class="line">        m(ii) = m_cac; % 时间赋值</span><br><span class="line">    end</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">end</span><br></pre></td></tr></table></figure>
 
-<h3 id="5-降噪引发的思考"><a href="#5-降噪引发的思考" class="headerlink" title="5. 降噪引发的思考"></a>5. 降噪引发的思考</h3><p>这里思考了一个问题，一方面增加采样率是可以增加时延估计的精度，但是对含噪情况下如何增加精度，可以看到GCC-PHAT对于噪声是十分敏感的，因此我尝试使用了最为简单的滤波。</p>
-<p>即对信号进行带通滤波，可以看到即使是作为理想参考信号的x1，本身也是带有噪声的，由于使用的信号是人类的语音信号，利用先验知识则可以进行（50,3400）内的频带滤波，那么先进行频带内的滤波则可以在一定程度上提高信噪比，但是始终应当明确这种滤波不能破坏两路信号之间的时延关系，否则滤波便失去了意义。</p>
-<p>其实经过理论推导可以发现，无论是FIR（线性相位）还是IIR（非线性相位），滤波都不会影响相对时延关系，因为最终的互功率的表达式都会转换为：</p>
+<h3 id="5-降噪引发的思考"><a href="#5-降噪引发的思考" class="headerlink" title="5. 降噪引发的思考"></a>5. 降噪引发的思考</h3><p>上一小节展示的是理想无噪的情况，一方面<strong>增加采样率可以增加时延估计的精度</strong>。但是在含噪情况下如何增加精度？可以看到GCC-PHAT对于噪声是十分敏感的。</p>
+<p>这里我尝试使用了最为简单的滤波，即对信号进行带通滤波。可以看到即使是作为理想参考信号的 ${x_1}$，本身也是带有噪声的。考虑到<strong>在本文中使用的信号都是是人类的语音信号</strong>，因此可以利用先验知识，<strong>进行 ${[50Hz, 3400Hz]}$ 的频带滤波</strong>。这种方式可以在一定程度上提高信噪比，但是<strong>始终应当明确这种预滤波不能破坏两路信号之间的时延关系，否则滤波便失去了意义</strong>。</p>
+<p>经过理论推导可以发现，无论是FIR（线性相位）还是IIR（非线性相位），<strong>滤波都不会影响相对时延关系</strong>，因为最终的互功率的表达式都会转换为：</p>
+<p>$$<br>\begin{align}<br>P\left( \omega  \right)<br>&amp; = \left[ A\left( \omega  \right) \cdot e^{jB\left( \omega  \right)} \cdot H\left( \omega  \right) \right] \cdot \left[ {H\left( \omega  \right) \cdot \left[  {A\left( \omega  \right) \cdot {e^{jB\left( \omega  \right)} } \cdot {e^{ - j\omega {t_0} } } + {N_0}\left( \omega  \right)} \right] } \right]^* \cr<br>&amp; = {\left| {H\left( \omega  \right)} \right|^2} \cdot \left[ { { {\left| {A\left( \omega  \right)} \right|}^2} \cdot {e^{j\omega {t_0} } } + A\left( \omega  \right) \cdot {e^{jB\left( \omega  \right) } } \cdot N_0^*\left( \omega  \right)} \right]<br>\tag{7}<br>\end{align}<br>$$</p>
+<p>可以看到，滤波器只是贡献了幅度因子。因此即便是滤波器本身不满足线性相位，最终也不会影响结果，但是前提是<strong>保证对两路信号进行了完全一致的处理</strong>。</p>
+<p>以下使用代码仿真如下：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% 预滤波之后的结果</span></span><br><span class="line">x1_filter       = my_prefilter(x1, <span class="number">50</span>, <span class="number">3400</span>, fs); </span><br><span class="line">x2_ideal_filter = my_prefilter(x2_ideal, <span class="number">50</span>, <span class="number">3400</span>, fs); </span><br><span class="line">x2_pract_filter = my_prefilter(x2_pract, <span class="number">50</span>, <span class="number">3400</span>, fs); </span><br><span class="line"></span><br><span class="line"><span class="comment">% 计算滤波器后的互相关</span></span><br><span class="line">xcorr11_filter_gcc       = my_gcc_phat(x1_filter, x1_filter);</span><br><span class="line">xcorr12_ideal_filter_gcc = my_gcc_phat(x2_ideal_filter, x1_filter);</span><br><span class="line">xcorr12_pract_filter_gcc = my_gcc_phat(x2_pract_filter, x1_filter);</span><br><span class="line">xcorr11_filter_cc        = xcorr(x1_filter, x1_filter);</span><br><span class="line">xcorr12_ideal_filter_cc  = xcorr(x2_ideal_filter, x1_filter);</span><br><span class="line">xcorr12_pract_filter_cc  = xcorr(x2_pract_filter, x1_filter);</span><br><span class="line"></span><br><span class="line"><span class="built_in">figure</span>(<span class="number">3</span>);</span><br><span class="line">subplot(<span class="number">311</span>);<span class="built_in">plot</span>(x1_filter);      title(<span class="string">'x1\_filter'</span>);       axis tight;grid on;</span><br><span class="line">subplot(<span class="number">312</span>);<span class="built_in">plot</span>(x2_ideal_filter);title(<span class="string">'x2\_ideal\_filter'</span>);axis tight;grid on;</span><br><span class="line">subplot(<span class="number">313</span>);<span class="built_in">plot</span>(x2_pract_filter);title(<span class="string">'x2\_pract\_filter'</span>);axis tight;grid on;</span><br><span class="line"></span><br><span class="line"><span class="built_in">figure</span>(<span class="number">4</span>);</span><br><span class="line">subplot(<span class="number">321</span>);<span class="built_in">plot</span>(xcorr11_filter_cc);</span><br><span class="line">title(<span class="string">'xcorr11\_filter\_cc'</span>);        axis tight;grid on;</span><br><span class="line">subplot(<span class="number">323</span>);<span class="built_in">plot</span>(xcorr12_ideal_filter_cc);</span><br><span class="line">title(<span class="string">'xcorr12\_ideal\_filter\_cc'</span>); axis tight;grid on;</span><br><span class="line">subplot(<span class="number">325</span>);<span class="built_in">plot</span>(xcorr12_pract_filter_cc);</span><br><span class="line">title(<span class="string">'xcorr12\_pract\_filter\_cc'</span>); axis tight;grid on;</span><br><span class="line">subplot(<span class="number">322</span>);<span class="built_in">plot</span>(xcorr11_filter_gcc);</span><br><span class="line">title(<span class="string">'xcorr11\_filter\_gcc'</span>);       axis tight;grid on;</span><br><span class="line">subplot(<span class="number">324</span>);<span class="built_in">plot</span>(xcorr12_ideal_filter_gcc);</span><br><span class="line">title(<span class="string">'xcorr12\_ideal\_filter\_gcc'</span>);axis tight;grid on;</span><br><span class="line">subplot(<span class="number">326</span>);<span class="built_in">plot</span>(xcorr12_pract_filter_gcc);</span><br><span class="line">title(<span class="string">'xcorr12\_pract\_filter\_gcc'</span>);axis tight;grid on;</span><br></pre></td></tr></table></figure>
+
+<p>其中my_prefilter是自己编写的<strong>预滤波</strong>的函数：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">y</span> = <span class="title">prefilter</span><span class="params">(x, lowfre, highfre, fs)</span></span></span><br><span class="line"><span class="comment">% Note:</span></span><br><span class="line"><span class="comment">%       This function is used to do the 'prefilter', a bandpass filter.</span></span><br><span class="line"><span class="comment">% Usage:</span></span><br><span class="line"><span class="comment">%       y = prefilter(x, lowfre, highfre, fs)</span></span><br><span class="line"><span class="comment">% Input arguments:</span></span><br><span class="line"><span class="comment">%       x       : the input signal (1*N)</span></span><br><span class="line"><span class="comment">%       lowfre  : the lower frequency</span></span><br><span class="line"><span class="comment">%       highfre : the high frequency</span></span><br><span class="line"><span class="comment">%       fs      : the sampling frequency</span></span><br><span class="line"><span class="comment">% Output arguments:</span></span><br><span class="line"><span class="comment">%       y       : the output signal</span></span><br><span class="line"><span class="comment">% For example:</span></span><br><span class="line"><span class="comment">%       x       = randn(1,2000);</span></span><br><span class="line"><span class="comment">%       lowfre  = 50;</span></span><br><span class="line"><span class="comment">%       highfre = 3400;</span></span><br><span class="line"><span class="comment">%       fs      = 48000;</span></span><br><span class="line"><span class="comment">%       y       = %%%;</span></span><br><span class="line"><span class="comment">% 说明：</span></span><br><span class="line"><span class="comment">%       本函数用来实现预滤波（带通滤波）</span></span><br><span class="line"><span class="comment">%       输入：原始信号，低频门限，高频门限，采样率</span></span><br><span class="line"><span class="comment">%       输出：滤波后信号</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% --------------------------------------------------------------</span></span><br><span class="line"><span class="comment">% 设计带通滤波器</span></span><br><span class="line">filterd=fdesign.highpass(<span class="string">'N,Fc'</span>,<span class="number">50</span>,lowfre,fs);  <span class="comment">% 50阶的高通滤波器</span></span><br><span class="line">filterd2=fdesign.lowpass(<span class="string">'N,Fc'</span>,<span class="number">50</span>,highfre,fs); <span class="comment">% 50阶的低通滤波器</span></span><br><span class="line">Hd=design(filterd);</span><br><span class="line">Hd2=design(filterd2);</span><br><span class="line"></span><br><span class="line"><span class="comment">% --------------------------------------------------------------</span></span><br><span class="line"><span class="comment">% 进行滤波</span></span><br><span class="line">y = filter(Hd,x);  <span class="comment">% 高通滤波</span></span><br><span class="line">y = filter(Hd2,x); <span class="comment">% 低通滤波    </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>结果如下：</p>
+<center>
+<font size="1.5"> 
+    <img src="/2019/07/15/2019-07-06-001-signal-delay2/fig8.png" width="80%"> <p></p>
+    Fig 8. 预滤波结果 <p></p>
+</font>
+</center>
+
+<center>
+<font size="1.5"> 
+    <img src="/2019/07/15/2019-07-06-001-signal-delay2/fig9.png" width="80%"> <p></p>
+    Fig 9. 预滤波后使用不同方法进行时延估计 <p></p>
+</font>
+</center>
+
+<p>注意这里的信噪比设置为40dB，<strong>可以发现使用GCC-PHAT处理滤波后的信号时出现了一个问题，即在0时延处出现了较大的冲激（在期望的时延处仍有较小的峰值），这显然不是正确的结果</strong>。</p>
+<p><strong>这个问题困扰了我很长时间，也正是由于此我才推迟了写这篇文章的时间</strong>，我花费了很长的时间思考后从两个角度分析了一下：</p>
+<ul>
+<li>从理论上讲，滤波器只是贡献了幅度因子，因为即便是滤波器本身不满足线性相位，最终也不会影响结果，但是前提是<strong>保证对两路信号进行了完全一致的处理</strong>。因此发生这种情况可能是因为两路信号没有使用完全一致的滤波器所致，因此我准确去查看filter函数的源代码。可惜，查看不了，这是内置的函数。应该是由其它更底层的语言所写，属于matlab的核心知识产权，所以这只能成为一种猜想。</li>
+<li>从实践上讲，我查看了一下互功率结果的相位，结果发现有点意思：</li>
+</ul>
+<center>
+<font size="1.5"> 
+    <img src="/2019/07/15/2019-07-06-001-signal-delay2/fig10.png" width="80%"> <p></p>
+    Fig 10. 互功率的相位 <p></p>
+</font>
+</center>
+
+<p>注意横轴没有进行处理，但是事实上这里的横轴指的是 ${[-fs/2, fs/2]}$。可以看到，互功率只保留了 ${[50Hz, 3400Hz]}$ 频带内的成分。<strong>从另外一种角度分析，考虑时域和频域的对偶性，如果将上图看做一个时域信号，则发现其存在一个较强的直流成分，因此在频域会有一个很大的零频分量。因此上图（频域中的互功率）对应的傅里叶变换，即时域中的互相关的结果，会在0时延处产生一个较大的冲激</strong>。</p>
+<p>其实<strong>分析这个冲激产生的原因：应该是对于滤波的方法没有进行深刻理解</strong>。其实从式（7）式就可以看到，当两路信号的滤波处理，完全保持一致的时候，<strong>最终的滤波处理只是在互功率上进行了线性处理，因此对于相位完全没有影响，而且对于幅度也完全没有影响。</strong></p>
+<p>其实，出发点是利用信号主要聚集在 ${[50Hz, 3400Hz]}$，<strong>带通滤波后可以增强信号的成分，减弱信号</strong>。因此滤波后，<strong>在进行后续的GCC-PHAT处理前，必须对互功率进行加窗处理，即只使用 ${[50Hz, 3400Hz]}$ 频带内的信息，而非整个频带的信息，否则就失去了意义</strong>。</p>
+<p>以下人工取横轴区间为 ${[824, 1224]}$ 进行测试（总FFT点数为2048，保持对于中心1024的对称），可以发现结果为：</p>
+<center>
+<font size="1.5"> 
+    <img src="/2019/07/15/2019-07-06-001-signal-delay2/fig11.png" width="80%"> <p></p>
+    Fig 11. 预滤波并且加窗处理后的结果 <p></p>
+</font>
+</center>
+
+<p>可以看到结果显示为1023点，利用 ${sinc}$ 插值可以将结果进一步确定为 ${[1023, 1024]}$ 之间，基本处于正确的结果附近。但是无法再进一步增加精度了，这是由信噪比所限制的。</p>
+<h3 id="6-总结"><a href="#6-总结" class="headerlink" title="6. 总结"></a>6. 总结</h3><p>综上所述，对比经典的<strong>频域法CC</strong>以及<strong>GCC-PHAT</strong>可以发现：</p>
+<ul>
+<li><strong>后者通过丢弃频域幅度的信息，可以获得时域上十分尖锐的结果，但是抗噪性能大为减弱。</strong></li>
+<li><strong>前者完全保留了频域幅度的信息，可以获得优良的抗噪性能，但是幅度信息导致了结果出现发散。</strong></li>
+</ul>
+<p>其它的GCC都是在此基础上<strong>提出了各式各样的加权系数</strong>，目的都是<strong>通过选取不同程度的时频信息，来实现特定的目的和结果。</strong></p>
+<p>而在工程的层面上，提高最终时域估计精度的方式有：</p>
+<ul>
+<li>使用 ${sinc}$ 插值可以使结果复原，但是这属于“扬汤止沸”的方式。</li>
+<li>增大SNR可以提高精度，这属于“釜底抽薪”的方式。</li>
+</ul>
+<p>因此可以看到，使用GCC-PHAT来求解信号的时延，最重要的因素还是SNR。还有一个问题值得强调：</p>
+<blockquote>
+<p>问：当SNR很高时，GCC-PHAT和直接频域法求互相关都可以获得信号的准确时延，那么GCC-PHAT方法的优势在于哪些地方？</p>
+<p>答：在于结果十分尖锐，很多时候我们目的并不只是为了求解准确的时延。有可能在某次处理中返回了一个在准确时延附近的值，我们需要一个系数来表示该点与准确值的误差程度，而传统的互相关结果是发散的，导致对于误差不是很敏感。而对于GCC-PHAY锐化后的结果，对误差则十分敏感。稍有误差，则会赋予一个十分小的权重，因此这是GCC-PHAT的优势所在。</p>
+</blockquote>
+<h3 id="7-后记"><a href="#7-后记" class="headerlink" title="7. 后记"></a>7. 后记</h3><p>写这种技术文档真是太麻烦了，我原以为一上午就能弄完，结果陆陆续续拖了2天时间，不仅仅是公式和图的修改，更关键的是在写的过程中总能发现一些错误，这样遇到问题就会停下来拖慢了进度。。。</p>
+<p>这篇文章是上一篇文章的的续篇，但是我加了一些仿真时遇到的问题和思考，导致篇幅有些多，能完整看下来的都是同行啊哈哈。希望以这一篇作为对信号时延估计的小收尾，文中有什么纰漏欢迎指出并与我联系。</p>
 
       
     </div>
@@ -799,7 +873,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#说明"><span class="nav-number">1.</span> <span class="nav-text">说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-上一篇的错误"><span class="nav-number">2.</span> <span class="nav-text">1. 上一篇的错误</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-GCC-PHAT的理论推导"><span class="nav-number">3.</span> <span class="nav-text">2. GCC-PHAT的理论推导</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-频域法CC"><span class="nav-number">3.1.</span> <span class="nav-text">2.1 频域法CC</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-GCC-PHAT"><span class="nav-number">3.2.</span> <span class="nav-text">2.2 GCC-PHAT</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-仿真结果"><span class="nav-number">4.</span> <span class="nav-text">3. 仿真结果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-时延精度与采样率"><span class="nav-number">5.</span> <span class="nav-text">4. 时延精度与采样率</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-降噪引发的思考"><span class="nav-number">6.</span> <span class="nav-text">5. 降噪引发的思考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#说明"><span class="nav-number">1.</span> <span class="nav-text">说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-上一篇的错误"><span class="nav-number">2.</span> <span class="nav-text">1. 上一篇的错误</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-GCC-PHAT的理论推导"><span class="nav-number">3.</span> <span class="nav-text">2. GCC-PHAT的理论推导</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-频域法CC"><span class="nav-number">3.1.</span> <span class="nav-text">2.1 频域法CC</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-GCC-PHAT"><span class="nav-number">3.2.</span> <span class="nav-text">2.2 GCC-PHAT</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-仿真结果"><span class="nav-number">4.</span> <span class="nav-text">3. 仿真结果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-时延精度与采样率"><span class="nav-number">5.</span> <span class="nav-text">4. 时延精度与采样率</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-降噪引发的思考"><span class="nav-number">6.</span> <span class="nav-text">5. 降噪引发的思考</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-总结"><span class="nav-number">7.</span> <span class="nav-text">6. 总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-后记"><span class="nav-number">8.</span> <span class="nav-text">7. 后记</span></a></li></ol></div>
             
 
           </div>
@@ -833,7 +907,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">7.7k</span>
+    <span title="Site words total count">10.4k</span>
   
 </div>
 
@@ -856,7 +930,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共7.7k字</span>
+  <span class="post-count">博客全站共10.4k字</span>
 </div>
 
         
