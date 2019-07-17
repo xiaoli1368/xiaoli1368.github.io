@@ -86,18 +86,20 @@
 
 
 
-<meta name="description" content="说明 这篇文章暂且作为之前那一篇的后续">
+<meta name="description" content="说明 这篇文章是之前《信号之间的时延估计》的续篇，中间隔了很长时间才写这一篇，是因为期间一直有其它事情要做，而且感觉对GCC的一些关键点还没有考虑清楚。后来评论区一位朋友也在关心进度，我就不得不抓紧时间好好思考一下了哈哈。因此最终写了这一篇作为上一篇的修正以及补充。 PS：这篇文章内容较多。">
 <meta name="keywords" content="信号处理，互相关，时延">
 <meta property="og:type" content="article">
 <meta property="og:title" content="信号之间的时延估计（续）">
-<meta property="og:url" content="https://github.com/xiaoli1368/xiaoli1368.github.io/2019/07/06/2019-07-06-001-signal-delay2/index.html">
+<meta property="og:url" content="https://github.com/xiaoli1368/xiaoli1368.github.io/2019/07/15/2019-07-06-001-signal-delay2/index.html">
 <meta property="og:site_name" content="Xiaoli&#39;s Blog">
-<meta property="og:description" content="说明 这篇文章暂且作为之前那一篇的后续">
+<meta property="og:description" content="说明 这篇文章是之前《信号之间的时延估计》的续篇，中间隔了很长时间才写这一篇，是因为期间一直有其它事情要做，而且感觉对GCC的一些关键点还没有考虑清楚。后来评论区一位朋友也在关心进度，我就不得不抓紧时间好好思考一下了哈哈。因此最终写了这一篇作为上一篇的修正以及补充。 PS：这篇文章内容较多。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-06T14:14:00.304Z">
+<meta property="og:image" content="https://github.com/xiaoli1368/xiaoli1368.github.io/2019/07/15/2019-07-06-001-signal-delay2/E:%5C2018-2019_Master3%5C007_Writing%5C002_zhihu%5C002_2019_07_15_signal_delay2%5Csignal_delay2_fig1.png">
+<meta property="og:updated_time" content="2019-07-16T12:03:22.605Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="信号之间的时延估计（续）">
-<meta name="twitter:description" content="说明 这篇文章暂且作为之前那一篇的后续">
+<meta name="twitter:description" content="说明 这篇文章是之前《信号之间的时延估计》的续篇，中间隔了很长时间才写这一篇，是因为期间一直有其它事情要做，而且感觉对GCC的一些关键点还没有考虑清楚。后来评论区一位朋友也在关心进度，我就不得不抓紧时间好好思考一下了哈哈。因此最终写了这一篇作为上一篇的修正以及补充。 PS：这篇文章内容较多。">
+<meta name="twitter:image" content="https://github.com/xiaoli1368/xiaoli1368.github.io/2019/07/15/2019-07-06-001-signal-delay2/E:%5C2018-2019_Master3%5C007_Writing%5C002_zhihu%5C002_2019_07_15_signal_delay2%5Csignal_delay2_fig1.png">
 
 
 
@@ -127,7 +129,7 @@
 
 
 
-  <link rel="canonical" href="https://github.com/xiaoli1368/xiaoli1368.github.io/2019/07/06/2019-07-06-001-signal-delay2/">
+  <link rel="canonical" href="https://github.com/xiaoli1368/xiaoli1368.github.io/2019/07/15/2019-07-06-001-signal-delay2/">
 
 
 
@@ -271,7 +273,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://github.com/xiaoli1368/xiaoli1368.github.io/2019/07/06/2019-07-06-001-signal-delay2/">
+    <link itemprop="mainEntityOfPage" href="https://github.com/xiaoli1368/xiaoli1368.github.io/2019/07/15/2019-07-06-001-signal-delay2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="xiaoli">
@@ -292,6 +294,10 @@
         
 
         <div class="post-meta">
+			 
+				<i class="fa fa-thumb-tack"></i> 
+				<font color="7D26CD">已置顶</font> 
+				<span class="post-meta-divider">|</span> 
 			
 
           <span class="post-time">
@@ -302,8 +308,8 @@
               
                 <span class="post-meta-item-text">Posted on&#58;</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-06T22:09:24+08:00">
-                2019-07-06
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-15T16:33:04+08:00">
+                2019-07-15
               </time>
             
 
@@ -345,8 +351,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/07/06/2019-07-06-001-signal-delay2/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/07/06/2019-07-06-001-signal-delay2/" itemprop="commentCount"></span>
+                <a href="/2019/07/15/2019-07-06-001-signal-delay2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/07/15/2019-07-06-001-signal-delay2/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -368,7 +374,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  18字
+                  1.1k字
                 </span>
               
 
@@ -384,7 +390,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  1分钟
+                  3分钟
                 </span>
               
             </div>
@@ -406,8 +412,32 @@
 
       
         <h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><blockquote>
-<p>这篇文章暂且作为之前那一篇的后续</p>
+<p>这篇文章是之前《信号之间的时延估计》的续篇，中间隔了很长时间才写这一篇，是因为期间一直有其它事情要做，而且感觉对GCC的一些关键点还没有考虑清楚。后来评论区一位朋友也在关心进度，我就不得不抓紧时间好好思考一下了哈哈。因此最终写了这一篇作为上一篇的修正以及补充。</p>
+<p>PS：这篇文章内容较多。</p>
 </blockquote>
+<a id="more"></a>
+
+<p><strong><em>这里需要插入上一篇文章的链接</em></strong></p>
+<h3 id="1-上一篇的错误"><a href="#1-上一篇的错误" class="headerlink" title="1. 上一篇的错误"></a>1. 上一篇的错误</h3><p>经过更加深入的思考后，以前的一些“想当然”的看法明显是错误的，我在上一篇中对于GCC的理解中写道：</p>
+<blockquote>
+<p>其实，<strong>信号进行了PHAT加权后，实质上相当于进行了白化滤波</strong>，倘若信号转换为了理想的白噪声形式，则时域中必然会在零延时处出现冲激，这是由傅里叶变换决定的。然而仅进行了幅度上的归一化尚且不能认为是理想的白化，被保留的相位信息仍占据主导因素，因此会在准确的时延处产生更大的冲激。<strong>因此两路具有确定延时关系的信号在进行GCC-PHAT后会获得两个冲激峰值</strong>。如果两路信号不具备延时关系，则它们的相关性很小，因此进行PHAT加权而产生的频谱更加趋向于理想白噪声，因此它们的时域结果也趋向于在零时延处产生较大峰值。</p>
+</blockquote>
+<p>这种说法是错误的，即便在频域进行了白化滤波，事实上也不会在0处产生同样的冲激。错误的原因在于，将功率谱和自相关，以及频谱与时延弄混了。对于一个信号进行分析时，首先应该明确该信号属于确定信号还是不确定信号（随机信号）。而噪声则比较特殊，一般将其作为随机信号并使用统计的规律来进行分析，此时噪声的功率谱和自相关是互为傅里叶变换的，并且对于白噪声而言，其功率谱是常数，此时的自相关函数会在0时延处产生一个冲激。而将其作为确定信号进行分析的时候，可以发现白噪声的频谱的成分十分混杂，反变换到时域也是十分混杂的噪声形式。</p>
+<p>事实上，对于一个确定的信号的频谱，对幅度进行归一化后与白化有相同的性质，但是不能认为是“白化”，此时在时域能否产生冲激，是由信号相位谱之间的关系决定的。事实上，只有确定的线性相位才会在时域产生对应的冲激，而对于几乎没有线性相位的情况，可以认为由很多个线性相位叠加而成，因此时域上也就会出现十分混杂的冲激，具体的理论推导见第二部分。</p>
+<p>以下是直接从频域生成白噪声并观察其时域波形：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">testSignal = ifft(<span class="built_in">exp</span>(<span class="number">1</span><span class="built_in">i</span>*<span class="built_in">pi</span>*<span class="built_in">randn</span>(<span class="number">1</span>,<span class="number">1000</span>)));</span><br><span class="line"><span class="built_in">figure</span>;</span><br><span class="line"><span class="built_in">plot</span>(<span class="built_in">real</span>(testSignal));</span><br><span class="line">title(<span class="string">'白噪声频谱的时域波形'</span>);</span><br></pre></td></tr></table></figure>
+
+<p><img src="//github.com/xiaoli1368/xiaoli1368.github.io/2019/07/15/2019-07-06-001-signal-delay2/E:%5C2018-2019_Master3%5C007_Writing%5C002_zhihu%5C002_2019_07_15_signal_delay2%5Csignal_delay2_fig1.png" alt="signal_delay2_fig1"></p>
+<h3 id="2-GCC-PHAT的理论推导"><a href="#2-GCC-PHAT的理论推导" class="headerlink" title="2. GCC-PHAT的理论推导"></a>2. GCC-PHAT的理论推导</h3><p>使用GCC-PHAT来计算时延的出发点如下：</p>
+<ol>
+<li>传统的时域互相关法，计算量较大且运算时间慢</li>
+<li>使用经典的频域法来计算互相关（CC），但是不能满足更高的要求</li>
+<li>在CC的基础上，对互功率进行“系数加权”，由此产生了一系列的广义互相关法（GCC）</li>
+<li>在GCC中，控制加权函数，进行相位加权可以对输出结果进行锐化，这便是GCC-PHAT</li>
+<li>GCC-PHAT常与SRP-PHAT结合并应用到目标定位中</li>
+</ol>
+<h4 id="2-1-频域法"><a href="#2-1-频域法" class="headerlink" title="2.1 频域法"></a>2.1 频域法</h4><p>因此这里主要针对GCC-PHAT进行原理推导，首先对信号进行建模，这里直接考虑的是含噪下的模型，目标发射信号 ${ x\left( t \right)}$ ，两路接收信号为：<br>$$<br>{x_1}\left( t \right) = x\left( {t - {t_1} } \right) + {n_1}\left( t \right) \tag{1}<br>$$</p>
+<p>$$<br>{x_2}\left( t \right) = x\left( {t - {t_2}} \right) + {n_2}\left( t \right) \tag{2}<br>$$</p>
 
       
     </div>
@@ -433,7 +463,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link:</strong>
-    <a href="https://github.com/xiaoli1368/xiaoli1368.github.io/2019/07/06/2019-07-06-001-signal-delay2/" title="信号之间的时延估计（续）">https://github.com/xiaoli1368/xiaoli1368.github.io/2019/07/06/2019-07-06-001-signal-delay2/</a>
+    <a href="https://github.com/xiaoli1368/xiaoli1368.github.io/2019/07/15/2019-07-06-001-signal-delay2/" title="信号之间的时延估计（续）">https://github.com/xiaoli1368/xiaoli1368.github.io/2019/07/15/2019-07-06-001-signal-delay2/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice: </strong>
@@ -652,7 +682,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#说明"><span class="nav-number">1.</span> <span class="nav-text">说明</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#说明"><span class="nav-number">1.</span> <span class="nav-text">说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-上一篇的错误"><span class="nav-number">2.</span> <span class="nav-text">1. 上一篇的错误</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-GCC-PHAT的理论推导"><span class="nav-number">3.</span> <span class="nav-text">2. GCC-PHAT的理论推导</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-频域法"><span class="nav-number">3.1.</span> <span class="nav-text">2.1 频域法</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -686,7 +716,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">3.6k</span>
+    <span title="Site words total count">4.7k</span>
   
 </div>
 
@@ -709,7 +739,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共3.6k字</span>
+  <span class="post-count">博客全站共4.7k字</span>
 </div>
 
         
@@ -846,8 +876,8 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'https://github.com/xiaoli1368/xiaoli1368.github.io/2019/07/06/2019-07-06-001-signal-delay2/';
-          this.page.identifier = '2019/07/06/2019-07-06-001-signal-delay2/';
+          this.page.url = 'https://github.com/xiaoli1368/xiaoli1368.github.io/2019/07/15/2019-07-06-001-signal-delay2/';
+          this.page.identifier = '2019/07/15/2019-07-06-001-signal-delay2/';
           this.page.title = '信号之间的时延估计（续）';
         };
         var d = document, s = d.createElement('script');
