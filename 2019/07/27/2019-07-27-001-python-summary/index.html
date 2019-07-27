@@ -1,0 +1,1384 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="python,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言  以下是在学习Python过程中遇到的一些需要记忆或者参考的知识点，这里将其总结如下，便于以后查看：  目录 变量命名规则 内置关键字 运算符与优先级 字符串格式化 常见转义序列 代码规范 常用函数与模块">
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python常用知识">
+<meta property="og:url" content="https://github.com/xiaoli1368/xiaoli1368.github.io/2019/07/27/2019-07-27-001-python-summary/index.html">
+<meta property="og:site_name" content="Xiaoli&#39;s Blog">
+<meta property="og:description" content="前言  以下是在学习Python过程中遇到的一些需要记忆或者参考的知识点，这里将其总结如下，便于以后查看：  目录 变量命名规则 内置关键字 运算符与优先级 字符串格式化 常见转义序列 代码规范 常用函数与模块">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-07-27T10:12:47.345Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python常用知识">
+<meta name="twitter:description" content="前言  以下是在学习Python过程中遇到的一些需要记忆或者参考的知识点，这里将其总结如下，便于以后查看：  目录 变量命名规则 内置关键字 运算符与优先级 字符串格式化 常见转义序列 代码规范 常用函数与模块">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://github.com/xiaoli1368/xiaoli1368.github.io/2019/07/27/2019-07-27-001-python-summary/">
+
+
+
+
+
+  <title>python常用知识 | Xiaoli's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/xiaoli1368/xiaoli1368.github.io" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Xiaoli's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">时间不在于你拥有多少，而在于你怎样使用！——艾克•祖安</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-主页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            主页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-关于">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-标签">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-分类">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://github.com/xiaoli1368/xiaoli1368.github.io/2019/07/27/2019-07-27-001-python-summary/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xiaoli">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaoli's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">python常用知识</h1>
+        
+
+        <div class="post-meta">
+			 
+				<i class="fa fa-thumb-tack"></i> 
+				<font color="7D26CD">已置顶</font> 
+				<span class="post-meta-divider">|</span> 
+			
+
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on&#58;</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-27T18:07:00+08:00">
+                2019-07-27
+              </time>
+            
+
+            
+
+            
+          </span>
+		  
+		  
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+                               
+                <span class="post-meta-item-text">In&#58;</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/07/27/2019-07-27-001-python-summary/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/07/27/2019-07-27-001-python-summary/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  1k字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  4分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><blockquote>
+<p> 以下是在学习Python过程中遇到的一些需要记忆或者参考的知识点，这里将其总结如下，便于以后查看：</p>
+</blockquote>
+<h3 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h3><ol>
+<li>变量命名规则</li>
+<li>内置关键字</li>
+<li>运算符与优先级</li>
+<li>字符串格式化</li>
+<li>常见转义序列</li>
+<li>代码规范</li>
+<li>常用函数与模块</li>
+</ol>
+<a id="more"></a>
+
+<h3 id="1-变量命名规则"><a href="#1-变量命名规则" class="headerlink" title="1.变量命名规则"></a>1.变量命名规则</h3><ul>
+<li>变量名只能包含字母、数字和下划线。</li>
+<li>变量名可以以字母或者下划线打头，但不能以数字打头。注意最好不要使用双下划线打头，这种形式通常被python的类内置使用。</li>
+<li>不要将python关键字和函数用作变量名。</li>
+</ul>
+<p><strong>以下是一些额外的要求：</strong></p>
+<blockquote>
+<ul>
+<li>变量名不能包含空格，可以使用下划线来分隔其中的单词。</li>
+<li>变量名慎用小写字母l和大写字母O（分别容易和大写字母I以及数字0混淆）。</li>
+<li>变量名应简短又具有描述性，最好使用驼峰准则。</li>
+</ul>
+</blockquote>
+<h3 id="2-内置关键字"><a href="#2-内置关键字" class="headerlink" title="2. 内置关键字"></a>2. 内置关键字</h3><p>可以使用以下代码查看python内置的35个关键字：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">help(<span class="string">'keywords'</span>)</span><br></pre></td></tr></table></figure>
+
+<p>以下是输出的结果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">Here is a list of the Python keywords.  Enter any keyword to get more help.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">False               class               from                or</span></span><br><span class="line"><span class="string">None                continue            global              pass</span></span><br><span class="line"><span class="string">True                def                 if                  raise</span></span><br><span class="line"><span class="string">and                 del                 import              return</span></span><br><span class="line"><span class="string">as                  elif                in                  try</span></span><br><span class="line"><span class="string">assert              else                is                  while</span></span><br><span class="line"><span class="string">async               except              lambda              with</span></span><br><span class="line"><span class="string">await               finally             nonlocal            yield</span></span><br><span class="line"><span class="string">break               for                 not                 </span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-运算符及优先级"><a href="#3-运算符及优先级" class="headerlink" title="3. 运算符及优先级"></a>3. 运算符及优先级</h3><p><strong>常见运算符：</strong></p>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>+</strong></td>
+<td>加</td>
+</tr>
+<tr>
+<td><strong>-</strong></td>
+<td>减</td>
+</tr>
+<tr>
+<td><strong>*</strong></td>
+<td>乘</td>
+</tr>
+<tr>
+<td><strong>/</strong></td>
+<td>除</td>
+</tr>
+<tr>
+<td><strong>//</strong></td>
+<td>整除并向下取整</td>
+</tr>
+<tr>
+<td><strong>**</strong></td>
+<td>乘方</td>
+</tr>
+<tr>
+<td><strong>%</strong></td>
+<td>求余</td>
+</tr>
+</tbody></table>
+<p>位运算符：</p>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>&lt;&lt;</strong></td>
+<td>左移指定的位数</td>
+</tr>
+<tr>
+<td><strong>&gt;&gt;</strong></td>
+<td>右移指定的位数</td>
+</tr>
+<tr>
+<td><strong>&amp;</strong></td>
+<td>按位与</td>
+</tr>
+<tr>
+<td><strong>|</strong></td>
+<td>按位或</td>
+</tr>
+<tr>
+<td><strong>^</strong></td>
+<td>按位异或</td>
+</tr>
+<tr>
+<td><strong>~</strong></td>
+<td>按位取反</td>
+</tr>
+</tbody></table>
+<p><strong>逻辑运算符</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>&lt;</strong></td>
+<td>小于</td>
+</tr>
+<tr>
+<td><strong>&gt;</strong></td>
+<td>大于</td>
+</tr>
+<tr>
+<td><strong>&lt;=</strong></td>
+<td>小于等于</td>
+</tr>
+<tr>
+<td><strong>&gt;=</strong></td>
+<td>大于等于</td>
+</tr>
+<tr>
+<td><strong>==</strong></td>
+<td>等于</td>
+</tr>
+<tr>
+<td><strong>!=</strong></td>
+<td>不等于</td>
+</tr>
+<tr>
+<td><strong>and</strong></td>
+<td>与</td>
+</tr>
+<tr>
+<td><strong>or</strong></td>
+<td>或</td>
+</tr>
+<tr>
+<td><strong>not</strong></td>
+<td>非</td>
+</tr>
+<tr>
+<td><strong>True</strong></td>
+<td>真</td>
+</tr>
+<tr>
+<td><strong>False</strong></td>
+<td>假</td>
+</tr>
+<tr>
+<td><strong>in</strong></td>
+<td>包含</td>
+</tr>
+<tr>
+<td><strong>not in</strong></td>
+<td>不包含</td>
+</tr>
+<tr>
+<td><strong>is</strong></td>
+<td>是</td>
+</tr>
+<tr>
+<td><strong>is not</strong></td>
+<td>不是</td>
+</tr>
+</tbody></table>
+<p><strong>常见被判断为False的情况：</strong></p>
+<table>
+<thead>
+<tr>
+<th>False</th>
+<th>布尔</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>None</strong></td>
+<td>null类型</td>
+</tr>
+<tr>
+<td><strong>0</strong></td>
+<td>整型</td>
+</tr>
+<tr>
+<td><strong>0.0</strong></td>
+<td>浮点型</td>
+</tr>
+<tr>
+<td><strong>‘’</strong></td>
+<td>空字符串</td>
+</tr>
+<tr>
+<td><strong>[]</strong></td>
+<td>空列表</td>
+</tr>
+<tr>
+<td><strong>()</strong></td>
+<td>空元组</td>
+</tr>
+<tr>
+<td><strong>{}</strong></td>
+<td>空字典</td>
+</tr>
+<tr>
+<td><strong>set()</strong></td>
+<td>空集合</td>
+</tr>
+</tbody></table>
+<p><strong>运算符优先级（由低到高）：</strong></p>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>lambda</strong></td>
+<td>Lambda 表达式</td>
+</tr>
+<tr>
+<td><strong>if - else</strong></td>
+<td>条件表达式</td>
+</tr>
+<tr>
+<td><strong>or</strong></td>
+<td>布尔“或”</td>
+</tr>
+<tr>
+<td><strong>and</strong></td>
+<td>布尔“与”</td>
+</tr>
+<tr>
+<td><strong>not x</strong></td>
+<td>布尔“非”</td>
+</tr>
+<tr>
+<td><strong>in, not in, is, is not, &lt;, &lt;=, &gt;, &gt;=, !=, ==</strong></td>
+<td>比较，包括成员资格测试和身份测试</td>
+</tr>
+<tr>
+<td><strong>|</strong></td>
+<td>按位或</td>
+</tr>
+<tr>
+<td><strong>^</strong></td>
+<td>按位异或</td>
+</tr>
+<tr>
+<td><strong>&amp;</strong></td>
+<td>按位与</td>
+</tr>
+<tr>
+<td><strong>&lt;&lt;, &gt;&gt;</strong></td>
+<td>位移</td>
+</tr>
+<tr>
+<td><strong>+, -</strong></td>
+<td>加与减</td>
+</tr>
+<tr>
+<td><strong>*, /, //, %</strong></td>
+<td>乘、除、整除、取余</td>
+</tr>
+<tr>
+<td><strong>+x, -x, ~x</strong></td>
+<td>正、负、按位取反</td>
+</tr>
+<tr>
+<td><strong>**</strong></td>
+<td>求幂</td>
+</tr>
+<tr>
+<td><strong>x[index], x[index:index], x(arguments…), x.attribute</strong></td>
+<td>下标、切片、调用、属性引用</td>
+</tr>
+<tr>
+<td><strong>(expressions…), [expressions…], {key: value…}, {expressions…}</strong></td>
+<td>表示绑定或元组、表示列表、表示字典、表示集合</td>
+</tr>
+</tbody></table>
+<h3 id="4-字符串格式化"><a href="#4-字符串格式化" class="headerlink" title="4. 字符串格式化"></a>4. 字符串格式化</h3><p><strong>1）使用 % 的方式</strong></p>
+<table>
+<thead>
+<tr>
+<th>符号</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>%d, %i</strong></td>
+<td>十进制整数</td>
+</tr>
+<tr>
+<td><strong>%o</strong></td>
+<td>八进制整数</td>
+</tr>
+<tr>
+<td><strong>%u</strong></td>
+<td>无符号整数</td>
+</tr>
+<tr>
+<td><strong>%x, %X</strong></td>
+<td>无符号十六进制（小写，大写）</td>
+</tr>
+<tr>
+<td><strong>%e, %E</strong></td>
+<td>浮点型（科学计数法，小写，大写）</td>
+</tr>
+<tr>
+<td><strong>%f, %F</strong></td>
+<td>浮点数</td>
+</tr>
+<tr>
+<td><strong>%c</strong></td>
+<td>单个字符</td>
+</tr>
+<tr>
+<td><strong>%s, %r</strong></td>
+<td>字符串（str()方法，repr()方法）</td>
+</tr>
+</tbody></table>
+<p><strong>格式控制：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># %[数据名称][对齐标志][宽度].[精度]类型</span></span><br><span class="line"><span class="comment"># print('%08.3f' % 12.34)</span></span><br><span class="line"><span class="comment"># 输出 0012.340</span></span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>数据名称</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>%d, %i</strong></td>
+<td>十进制整数</td>
+</tr>
+<tr>
+<td><strong>%o</strong></td>
+<td>八进制整数</td>
+</tr>
+<tr>
+<td><strong>%u</strong></td>
+<td>无符号整数</td>
+</tr>
+<tr>
+<td><strong>%x, %X</strong></td>
+<td>无符号十六进制（小写，大写）</td>
+</tr>
+<tr>
+<td><strong>%e, %E</strong></td>
+<td>浮点型（科学计数法，小写，大写）</td>
+</tr>
+<tr>
+<td><strong>%f, %F</strong></td>
+<td>浮点数</td>
+</tr>
+<tr>
+<td><strong>%c</strong></td>
+<td>单个字符</td>
+</tr>
+<tr>
+<td><strong>%s, %r</strong></td>
+<td>字符串（str()方法，repr()方法）</td>
+</tr>
+</tbody></table>
+<p><strong>2）使用 format 方式</strong></p>
+<p>有时间再写，可以见官网说明[<a href="https://www.python.org/dev/peps/pep-3101/]" target="_blank" rel="noopener">https://www.python.org/dev/peps/pep-3101/]</a></p>
+<p><strong>3）使用 f-string</strong></p>
+<p>有时间再写，可以见官网说明[<a href="https://www.python.org/dev/peps/pep-0536/]" target="_blank" rel="noopener">https://www.python.org/dev/peps/pep-0536/]</a></p>
+<h3 id="5-常见转义序列"><a href="#5-常见转义序列" class="headerlink" title="5. 常见转义序列"></a>5. 常见转义序列</h3><table>
+<thead>
+<tr>
+<th>符号</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>\\</strong></td>
+<td>反斜杠</td>
+</tr>
+<tr>
+<td><strong>\‘</strong></td>
+<td>单引号</td>
+</tr>
+<tr>
+<td><strong>\“</strong></td>
+<td>双引号</td>
+</tr>
+<tr>
+<td><strong>\a</strong></td>
+<td>响铃(BEL)</td>
+</tr>
+<tr>
+<td><strong>\b</strong></td>
+<td>退格(BS) ，将当前位置移到前一列</td>
+</tr>
+<tr>
+<td><strong>\f</strong></td>
+<td>换页(FF)，将当前位置移到下页开头</td>
+</tr>
+<tr>
+<td><strong>\n</strong></td>
+<td>换行(LF) ，将当前位置移到下一行开头</td>
+</tr>
+<tr>
+<td><strong>\r</strong></td>
+<td>回车(CR) ，将当前位置移到本行开头</td>
+</tr>
+<tr>
+<td><strong>\t</strong></td>
+<td>水平制表(HT) （跳到下一个TAB位置）十进制整数</td>
+</tr>
+<tr>
+<td><strong>\v</strong></td>
+<td>垂直制表(VT)</td>
+</tr>
+<tr>
+<td><strong>\0</strong></td>
+<td>空字符(NULL)</td>
+</tr>
+</tbody></table>
+<h3 id="6-代码规范"><a href="#6-代码规范" class="headerlink" title="6. 代码规范"></a>6. 代码规范</h3><p>PEP8见官网说明[<a href="https://www.python.org/dev/peps/pep-0008/&gt;]" target="_blank" rel="noopener">https://www.python.org/dev/peps/pep-0008/&gt;]</a></p>
+<h3 id="7-常用函数与模块"><a href="#7-常用函数与模块" class="headerlink" title="7. 常用函数与模块"></a>7. 常用函数与模块</h3><p><strong>常用内置函数：</strong></p>
+<ul>
+<li>range()</li>
+<li>len()</li>
+<li>replay()</li>
+<li>join()</li>
+<li>remove()</li>
+<li>sort()</li>
+<li>sorted()</li>
+</ul>
+<p><strong>常用内置库：</strong></p>
+<ul>
+<li>random</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+	<div>
+      
+        
+      
+	</div>
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:</strong>
+    xiaoli
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link:</strong>
+    <a href="https://github.com/xiaoli1368/xiaoli1368.github.io/2019/07/27/2019-07-27-001-python-summary/" title="python常用知识">https://github.com/xiaoli1368/xiaoli1368.github.io/2019/07/27/2019-07-27-001-python-summary/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice: </strong>
+    All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> unless stating additionally.
+  </li>
+</ul>
+
+      </div>
+    
+	<div>
+		
+		<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+		
+	</div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"><i class="fa fa-tag"></i> python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/15/2019-07-06-001-signal-delay2/" rel="next" title="信号之间的时延估计（续）">
+                <i class="fa fa-chevron-left"></i> 信号之间的时延估计（续）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/27/2019-07-27-002-python-data-science/" rel="prev" title="python与数据科学">
+                python与数据科学 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <a href="/">
+                <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="xiaoli">
+              </a>
+            
+              <p class="site-author-name" itemprop="name">xiaoli</p>
+              <p class="site-description motion-element" itemprop="description">fighting!</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/xiaoli1368" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:xiaoli1644@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/xue-li-37-25/activities" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-gratipay"></i>知乎</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://stackoverflow.com/users/11701277/xiaoli1368" target="_blank" title="StackOverflow">
+                      
+                        <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目录"><span class="nav-number">2.</span> <span class="nav-text">目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-变量命名规则"><span class="nav-number">3.</span> <span class="nav-text">1.变量命名规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-内置关键字"><span class="nav-number">4.</span> <span class="nav-text">2. 内置关键字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-运算符及优先级"><span class="nav-number">5.</span> <span class="nav-text">3. 运算符及优先级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-字符串格式化"><span class="nav-number">6.</span> <span class="nav-text">4. 字符串格式化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-常见转义序列"><span class="nav-number">7.</span> <span class="nav-text">5. 常见转义序列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-代码规范"><span class="nav-number">8.</span> <span class="nav-text">6. 代码规范</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-常用函数与模块"><span class="nav-number">9.</span> <span class="nav-text">7. 常用函数与模块</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xiaoli</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">15.9k</span>
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共15.9k字</span>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://github.com/xiaoli1368/xiaoli1368.github.io/2019/07/27/2019-07-27-001-python-summary/';
+          this.page.identifier = '2019/07/27/2019-07-27-001-python-summary/';
+          this.page.title = 'python常用知识';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+
+  <!-- 页面点击小红心 -->
+  <script type="text/javascript" src="/js/src/love.js"></script>
+
+</body>
+</html>
